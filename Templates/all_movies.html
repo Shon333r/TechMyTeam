@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Все фильмы - FILMSEARCH{% endblock %}
+
+{% block content %}
+    <h2>Все фильмы</h2>
+    <ul>
+        {% for film in films %}
+            <li>
+                <img src="{{ film.poster }}" alt="{{ film.name }}" width="100">
+                <h3>{{ film.name }}</h3>
+                <p>Год: {{ film.year }}</p>
+                <p>Рейтинг: {{ film.rating }}</p>
+                <p>Описание: {{ film.description.description }}</p>
+                <a href="/movie_info/{{ film.id }}">Подробнее</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

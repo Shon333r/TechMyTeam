@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILMSEARCH</title>
+        <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Заголовок */
+        .header {
+            background: linear-gradient(90deg, #2b2b2b, #121212);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        /* Поиск */
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .search input {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #444444;
+            border-radius: 8px;
+            background-color: #222222;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .search button {
+            margin-left: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search button:hover {
+            background-color: #e63900;
+            transform: translateY(-2px);
+        }
+
+        /* Цвет для заголовков ТОП-3 фильмов месяца */
+  .top-movies h2 {
+      color: #ffffff; /* Цвет Томато для ТОП-3 фильмов */
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+  }
+
+  /* Цвет для заголовков Рекомендуемых фильмов */
+  .recommended-movies h2 {
+      color: #ffffff; /* Цвет Лайм для Рекомендуемых фильмов */
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: bold;
+  }
+
+  /* Цвет для подписей (названия) фильмов */
+  .movie p {
+      color: #FF4500; /* Стальной синий для подписей */
+      margin: 10px 0;
+      font-size: 14px;
+      font-weight: bold;
+  }
+
+  /* Если вы хотите изменить цвет для названий фильмов в Топ-3 */
+  .movie.top p {
+      color: #FF4500; /* Цвет для подписей фильмов в ТОП-3 */
+  }
+
+        /* Фильмы */
+        .movies {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .movie {
+            background: #1e1e1e;
+            border: 2px solid #ff4500;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .movie:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(255, 69, 0, 0.3);
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+        }
+
+        .movie p {
+            margin: 10px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Выделение ТОП-3 фильмов */
+        .movie.top {
+            border: 2px solid #ff2600; /* Зеленая рамка для ТОП-3 */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>FILMSEARCH</h1>
+        <p>Найди любой фильм!</p>
+    </div>
+
+    <div class="container">
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Введите название фильма">
+            <button onclick="searchMovie()">Поиск</button>
+        </div>
+
+        <!-- ТОП-3 фильмы -->
+        <!-- ТОП-3 фильмы -->
+<div class="top-movies">
+    <h2>ТОП-3 ФИЛЬМА МЕСЯЦА</h2>
+    <div class="movies">
+        {% for film in top_films %}
+        <a href="{{ url_for('movie_info', film_id=film[0]) }}" class="movie top">
+            <img src="{{ film[6] }}" alt="{{ film[1] }}">
+            <p>{{ film[1] }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+        <!-- Рекомендуемые фильмы -->
+<div class="recommended-movies">
+    <h2>РЕКОМЕНДУЕМЫЕ ФИЛЬМЫ</h2>
+    <div class="movies">
+        {% for film in random_films %}
+        <a href="{{ url_for('movie_info', film_id=film.id) }}" class="movie">
+            <img src="{{ film.poster }}" alt="{{ film.name }}">
+            <p>{{ film.name }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+    <script>
+        function searchMovie() {
+            const query = document.getElementById("searchInput").value.trim();
+            if (query) {
+                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+            } else {
+                alert("Введите запрос для поиска!");
+            }
+        }
+    </script>
+</body>
+</html>

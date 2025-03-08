@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Заголовок */
+        .header {
+            background: linear-gradient(90deg, #2b2b2b, #121212);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* Поиск */
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .search input {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #444444;
+            border-radius: 8px;
+            background-color: #222222;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .search button {
+            margin-left: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #ff4500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .search button:hover {
+            background-color: #e63900;
+            transform: translateY(-2px);
+        }
+
+        /* Результаты поиска */
+        .results {
+            margin-top: 40px;
+        }
+
+        .movie {
+            background: #1e1e1e;
+            border: 2px solid #ff4500;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .movie:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(255, 69, 0, 0.3);
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+        }
+
+        .movie-info {
+            padding: 10px;
+        }
+
+        .movie-info h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .movie-info p {
+            margin: 5px 0;
+            font-size: 12px;
+            color: #cccccc;
+        }
+
+        .movie a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #ff4500;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .movie a:hover {
+            background-color: #e63900;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Результаты поиска</h1>
+    </div>
+
+    <div class="container">
+        <!-- Строка поиска -->
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Введите название фильма">
+            <button onclick="updateSearch()">Поиск</button>
+        </div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+
+
+</body>
+</html>

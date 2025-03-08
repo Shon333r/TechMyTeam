@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Фильтры - FILMSEARCH{% endblock %}
+
+{% block content %}
+    <h2>Используйте фильтры для поиска фильмов</h2>
+    <form method="get">
+
+        <label for="year_from">Год (от):</label>
+        <input type="number" name="year_from" id="year_from" value="{{ request.args.get('year_from', '') }}">
+
+        <label for="year_to">Год (до):</label>
+        <input type="number" name="year_to" id="year_to" value="{{ request.args.get('year_to', '') }}">
+
+        <label for="rating">Рейтинг (мин.):</label>
+        <input type="number" step="0.1" name="rating" id="rating" value="{{ request.args.get('rating', '') }}">
+
+        <button type="submit">Применить фильтр</button>
+    </form>
+{% endblock %}
+
