@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о фильме</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Заголовок */
+        .header {
+            background: linear-gradient(90deg, #2b2b2b, #121212);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        /* Информация о фильме */
+        .movie-info {
+            background: #1e1e1e;
+            border: 2px solid #ff4500;
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .movie-info img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .movie-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .movie-info p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Информация о фильме</h1>
+    </div>
+
+    <div class="container">
+        <div id="movieDetails" class="movie-info">
+            <img src="{{ film['poster'] }}" alt="{{ film['name'] }} Poster">
+            <h2>{{ film['name'] }}</h2>
+            <p><strong>Год выпуска:</strong> {{ film['year'] }}</p>
+            <p><strong>Рейтинг:</strong> {{ film['rating'] }}</p>
+            <p><strong>Возрастной рейтинг:</strong> {{ film['age_limit'] }}</p>
+            <p><strong>Описание:</strong> {{ film['description'] }}</p>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Результаты поиска - FILMSEARCH{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1>Результаты поиска</h1>
+    <p>Найдено {{ films|length }} фильмов</p>
+</div>
+
+<div class="container">
+    <!-- Форма фильтра -->
+    <form action="/search.html" method="get" class="search-form">
+        <input type="text" name="query" value="{{ query }}" placeholder="Введите название фильма" class="search-input">
+
+        <label for="year_from">Год от:</label>
+        <input type="number" id="year_from" name="year_from" value="{{ request.args.get('year_from', '') }}">
+
+        <label for="year_to">Год до:</label>
+        <input type="number" id="year_to" name="year_to" value="{{ request.args.get('year_to', '') }}">
+
+        <label for="rating">Рейтинг от:</label>
+        <input type="number" step="0.1" id="rating" name="rating" value="{{ request.args.get('rating', '') }}">
+
+
+
+        <button type="submit" class="search-button">Применить фильтр</button>
+    </form>
+
+    {% if films %}
+        <div class="movies">
+            {% for film in films %}
+                <div class="movie">
+                    <img src="{{ film[2] }}" alt="{{ film[1] }}" class="movie-card-img">
+                    <h3>{{ film[1] }}</h3>
+                    <p>Год: {{ film[3] }}</p>
+                    <p>Рейтинг: {{ film[4] }}</p>
+                    <a href="/movie_info/{{ film[0] }}" class="btn-more">Подробнее</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Фильмы не найдены.</p>
+    {% endif %}
+</div>
+{% endblock %}
